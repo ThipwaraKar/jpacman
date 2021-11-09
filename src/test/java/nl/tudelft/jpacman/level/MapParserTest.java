@@ -44,6 +44,25 @@ public class MapParserTest {
         Mockito.verify(levelFactory, Mockito.times(1)).createGhost();
         Mockito.verify(boardFactory, Mockito.atLeastOnce()).createGround();
     }
+     /**
+     * Test for the parseMap method (bad map).
+     */
+    @Test
+    public void testParseMapWrong1() {
+        PacmanConfigurationException thrown =
+            Assertions.assertThrows(PacmanConfigurationException.class, () -> {
+                MockitoAnnotations.initMocks(this);
+                assertNotNull(boardFactory);
+                assertNotNull(levelFactory);
+                MapParser mapParser = new MapParser(levelFactory, boardFactory);
+                ArrayList<String> map = new ArrayList<>();
+                map.add("############");
+                map.add("#M        G#");
+                map.add("############");
+                mapParser.parseMap(map);
+            });
+        Assertions.assertEquals("Invalid character at 1,1: M", thrown.getMessage());
+    }
 
 }
 

@@ -42,7 +42,7 @@ public class MapParserTest {
         map.add("############");
         mapParser.parseMap(map);
         Mockito.verify(levelFactory, Mockito.times(1)).createGhost();
-        Mockito.verify(boardFactory,Mockito.atLeastOnce()).createGround();
+        Mockito.verify(boardFactory, Mockito.atLeastOnce()).createGround();
     }
 
 }
